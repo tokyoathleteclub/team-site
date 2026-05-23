@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>東京女子アスリートクラブ | 東京都で活動する女子ソフトボールチーム</title>
+  <meta name="description" content="東京都で活動する女子ソフトボールチーム。見学・体験メンバー募集中。活動日程や大会情報を掲載しています。" />
+  <style>
+    :root {
+      --navy: #222d73;
+      --orange: #f07f12;
+      --white: #ffffff;
+      --text: #222222;
+      --shadow: 0 10px 24px rgba(0, 0, 0, .22);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans JP", "Hiragino Sans", sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      font-weight: 700;
+      line-height: 1.72;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: 100%;
+      max-width: 390px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 62px 10px 28px;
+      position: relative;
+    }
+
+    .pc-side-nav,
+    .pc-qr { display: none; }
+
+    .header {
+      height: 46px;
+      border-radius: 7px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px 0 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .brand-name {
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1;
+    }
+
+    .menu-button {
+      width: 32px;
+      height: 32px;
+      border: 0;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .menu-button span,
+    .menu-button span::before,
+    .menu-button span::after {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 999px;
+      content: "";
+    }
+
+    .menu-button span::before { transform: translateY(-7px); }
+    .menu-button span::after { transform: translateY(5px); }
+
+    .hero {
+      border-radius: 7px;
+      overflow: hidden;
+      background: rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+    }
+
+    .hero img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 345 / 162;
+      object-fit: cover;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      margin: 8px 0 28px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: .9;
+    }
+
+    .dot.active { background: #ffc56d; }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .cta small {
+      font-size: 10px;
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 18px 30px;
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      color: var(--navy);
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 6px;
+      height: 34px;
+      background: var(--orange);
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    .card p {
+      margin: 0 0 24px;
+      font-size: 14px;
+      letter-spacing: .01em;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .member-list,
+    .schedule-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .member-list li { margin-bottom: 4px; }
+
+    .practice-list p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .event {
+      margin-bottom: 30px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .event:last-child { margin-bottom: 0; }
+
+    .event-title {
+      color: var(--navy);
+      font-size: 14px;
+      line-height: 1.45;
+      margin: 0 0 12px;
+      font-weight: 900;
+    }
+
+    .event p { margin: 0; font-size: 13px; }
+
+    .instagram-link {
+      display: inline-flex;
+      margin-top: 2px;
+    }
+
+    .instagram-link img {
+      width: 34px;
+      height: 34px;
+      display: block;
+    }
+
+    .footer {
+      background: #fff;
+      color: var(--navy);
+      border-radius: 7px;
+      height: 29px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+      z-index: 50;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 22px;
+      left: 50%;
+      width: min(360px, calc(100vw - 20px));
+      transform: translateX(-50%) translateY(-14px);
+      opacity: 0;
+      pointer-events: none;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(247, 247, 250, .78);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 54px rgba(0,0,0,.28);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 60;
+    }
+
+    body.menu-open .drawer-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    body.menu-open .drawer {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 18px 18px 16px;
+      background: rgba(255,255,255,.45);
+      border-bottom: 1px solid rgba(255,255,255,.5);
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .drawer-brand img {
+      width: 27px;
+      height: 27px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .drawer-brand span {
+      color: var(--navy);
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1;
+    }
+
+    .close-button {
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      width: 38px;
+      height: 38px;
+      font-size: 46px;
+      line-height: .8;
+      cursor: pointer;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+
+    .drawer-body {
+      position: relative;
+      padding: 28px 26px 24px;
+      min-height: 322px;
+    }
+
+    .drawer-body::before {
+      content: "";
+      position: absolute;
+      inset: 54px 0 38px;
+      background: linear-gradient(rgba(247,247,250,.74), rgba(247,247,250,.74)), url("images/team.png") center/cover;
+      opacity: .82;
+      pointer-events: none;
+    }
+
+    .drawer-nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      color: var(--navy);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .drawer-nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      line-height: 1;
+    }
+
+    .drawer-nav a::before {
+      content: "";
+      width: 17px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--orange);
+      flex: 0 0 auto;
+    }
+
+    .drawer-instagram {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      margin-top: 22px;
+    }
+
+    .drawer-instagram img {
+      width: 49px;
+      height: 49px;
+    }
+
+    @media (min-width: 900px) {
+      body { min-width: 1000px; }
+
+      .page {
+        max-width: 345px;
+        padding-top: 26px;
+      }
+
+      .pc-side-nav {
+        position: fixed;
+        left: 24px;
+        top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 900;
+        z-index: 1;
+      }
+
+      .pc-side-nav a::before {
+        content: "− ";
+        color: var(--orange);
+      }
+
+      .pc-side-nav img {
+        width: 25px;
+        height: 25px;
+        margin-top: 2px;
+      }
+
+      .pc-qr {
+        position: fixed;
+        right: 28px;
+        top: 350px;
+        display: block;
+        text-align: center;
+        color: #fff;
+        font-size: 8px;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+
+      .pc-qr img {
+        display: block;
+        width: 72px;
+        height: 72px;
+        margin-top: 6px;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="pc-side-nav" aria-label="PC用ナビゲーション">
+    <a href="#team">チーム紹介</a>
+    <a href="#members">メンバー</a>
+    <a href="#practice">練習日程</a>
+    <a href="#games">大会日程</a>
+    <a href="#contact">お問い合わせ</a>
+    <a href="https://www.instagram.com/tokyoathleteclub/" target="_blank" rel="noopener"><img src="images/instagram.png" alt="Instagram"></a>
+  </nav>
+
+  <div class="pc-qr">
+    スマホでの閲覧は<br>こちらから
+    <img src="images/qr.png" alt="QRコード">
+  </div>
+
+  <div class="page">
+    <header class="header">
+      <a class="brand" href="#top" aria-label="東京女子アスリートクラブ ホーム">
+        <img src="images/logo.jpg" alt="">
+        <span class="brand-name">東京女子アスリートクラブ</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false">
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <div class="hero">
+        <img src="images/team.png" alt="東京女子アスリートクラブの集合写真">
+      </div>
+      <div class="dots" aria-hidden="true">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+
+      <a class="cta" href="#contact">新規メンバー募集中！ <small>▼</small></a>
+
+      <section class="card" id="team">
+        <h2 class="section-title">チーム紹介</h2>
+        <p>東京都府中市、あきる野市、などで活動する一般女子革ソフトボールチーム<br>只今練習試合、メンバー募集中！<br>革ボールを使用するクラブチーム<br>ソフトボール好きが集まった明るく楽しいチームです！</p>
+        <p>メンバーは、大学生・社会人で構成されており、皆それぞれ大学も職場も違っていて、普段はバイトをしたり仕事に追われたりとそれぞれの生活を送っていますが、そんなメンバーが週末に集まり、全国大会出場を目指して、ソフトボールを楽しみながら頑張っています。</p>
+        <p>クラブチームなので恵まれた環境とはいえませんが、メンバーがそれぞれの役割を果たし、皆で力を合わせてチーム作りをしています！</p>
+        <p>創設年：2005年</p>
+      </section>
+
+      <section class="card" id="members">
+        <h2 class="section-title">メンバー</h2>
+        <ul class="member-list">
+          <li>・18歳〜40代</li>
+          <li>・大学生、社会人</li>
+          <li>・主に大学OG、実業団OG</li>
+        </ul>
+        <p>他にも中学・高校での部活経験者など、幅広く在籍しています！</p>
+      </section>
+
+      <section class="card practice-list" id="practice">
+        <h2 class="section-title">2026年 練習日程</h2>
+        <!-- ▼練習日程：ここだけ編集 -->
+        <p>3/15(日) 10:00~12:00 連光寺グラウンド</p>
+        <p>3/15(日) 10:00~12:00 連光寺グラウンド</p>
+        <p>3/15(日) 10:00~12:00 連光寺グラウンド</p>
+        <p>3/15(日) 10:00~12:00 連光寺グラウンド</p>
+        <!-- ▲練習日程：ここまで -->
+      </section>
+
+      <section class="card" id="games">
+        <h2 class="section-title">2026年 大会日程</h2>
+        <!-- ▼大会日程：ここだけ編集 -->
+        <div class="event">
+          <h3 class="event-title">第47回 全日本クラブ選手権大会 東京都予選会</h3>
+          <p>日時：3/22(日)</p>
+          <p>場所：武蔵村山市総合運動場<br>　　　(東京都武蔵村山市岸5-31-7)</p>
+        </div>
+        <div class="event">
+          <h3 class="event-title">第78回 全日本総合 女子選手権大会 東京都予選会</h3>
+          <p>日時：5/16(土)・17(日)</p>
+          <p>予備日：5/23(土)・24(日)</p>
+          <p>場所：東京都町田市 町田市民球場</p>
+        </div>
+        <div class="event">
+          <h3 class="event-title">第47回 全日本クラブ選手権大会 関東予選会</h3>
+          <p>日時：5/30(土)・31(日)</p>
+          <p>予備日：6/1(月)</p>
+          <p>場所：東京都あきる野市あきる野市民球場<br>　　　東京都福生市福生市営野球場<br>　　　東京都武蔵村山市武蔵村山市総合運動場</p>
+        </div>
+        <div class="event">
+          <h3 class="event-title">第47回 全日本クラブ選手権大会</h3>
+          <p>日時：7/25(土)〜27(月)</p>
+          <p>場所：山梨県</p>
+        </div>
+        <!-- ▲大会日程：ここまで -->
+      </section>
+
+      <section class="card" id="contact">
+        <h2 class="section-title">お問い合わせ</h2>
+        <p>見学・体験などご希望の方は、InstagramのDM、またはXXX@gmail.comまでご連絡ください。</p>
+        <a class="instagram-link" href="https://www.instagram.com/tokyoathleteclub/" target="_blank" rel="noopener" aria-label="Instagramを見る">
+          <img src="images/instagram.png" alt="Instagram">
+        </a>
+      </section>
+    </main>
+
+    <footer class="footer">© 2026 東京女子アスリートクラブ</footer>
+  </div>
+
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <aside class="drawer" aria-label="メニュー">
+    <div class="drawer-head">
+      <div class="drawer-brand">
+        <img src="images/logo.jpg" alt="">
+        <span>東京女子アスリートクラブ</span>
+      </div>
+      <button class="close-button" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <div class="drawer-body">
+      <nav class="drawer-nav">
+        <a href="#team">チーム紹介</a>
+        <a href="#members">メンバー</a>
+        <a href="#practice">練習日程</a>
+        <a href="#games">大会日程</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+      <a class="drawer-instagram" href="https://www.instagram.com/tokyoathleteclub/" target="_blank" rel="noopener" aria-label="Instagramを見る">
+        <img src="images/instagram.png" alt="Instagram">
+      </a>
+    </div>
+  </aside>
+
+  <script>
+    const body = document.body;
+    const menuButton = document.querySelector('.menu-button');
+    const closeButton = document.querySelector('.close-button');
+    const overlay = document.querySelector('.drawer-overlay');
+    const drawerLinks = document.querySelectorAll('.drawer a');
+
+    function openMenu() {
+      body.classList.add('menu-open');
+      menuButton.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeMenu() {
+      body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+
+    menuButton.addEventListener('click', openMenu);
+    closeButton.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+    drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  </script>
+</body>
+</html>
